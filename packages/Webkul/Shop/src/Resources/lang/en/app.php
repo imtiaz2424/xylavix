@@ -5,7 +5,7 @@ return [
         'forgot-password' => [
             'already-sent'         => 'Already Password Reset Mail Sent.',
             'back'                 => 'Back to sign In ?',
-            'bagisto'              => 'Bagisto',
+            'bagisto'              => 'Xylavix',
             'email'                => 'Email',
             'email-not-exist'      => 'We cannot find a user with that email address.',
             'footer'               => '© Copyright 2010 - :current_year, Webkul Software (Registered in India). All rights reserved.',
@@ -19,7 +19,7 @@ return [
 
         'reset-password' => [
             'back-link-title'  => 'Back to Sign In',
-            'bagisto'          => 'Bagisto',
+            'bagisto'          => 'Xylavix',
             'confirm-password' => 'Confirm Password',
             'email'            => 'Registered Email',
             'footer'           => '© Copyright 2010 - :current_year, Webkul Software (Registered in India). All rights reserved.',
@@ -29,7 +29,7 @@ return [
         ],
 
         'login-form' => [
-            'bagisto'             => 'Bagisto',
+            'bagisto'             => 'Xylavix',
             'button-title'        => 'Sign In',
             'create-your-account' => 'Create your account',
             'email'               => 'Email',
@@ -48,7 +48,7 @@ return [
 
         'signup-form' => [
             'account-exists'              => 'Already have an account ?',
-            'bagisto'                     => 'Bagisto',
+            'bagisto'                     => 'Xylavix',
             'button-title'                => 'Register',
             'confirm-pass'                => 'Confirm Password',
             'email'                       => 'Email',
@@ -396,7 +396,7 @@ return [
         'layouts' => [
             'header' => [
                 'account'           => 'Account',
-                'bagisto'           => 'Bagisto',
+                'bagisto'           => 'Xylavix',
                 'cart'              => 'Cart',
                 'compare'           => 'Compare',
                 'dropdown-text'     => 'Manage Cart, Orders & Wishlist',
@@ -710,7 +710,7 @@ return [
             'suspended-account-message' => 'Your account has been suspended.',
 
             'index' => [
-                'bagisto'                  => 'Bagisto',
+                'bagisto'                  => 'Xylavix',
                 'cart'                     => 'Cart',
                 'continue-shopping'        => 'Continue Shopping',
                 'empty-product'            => 'You don’t have a product in your cart.',
