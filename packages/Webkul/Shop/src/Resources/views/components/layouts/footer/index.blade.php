@@ -21,10 +21,10 @@
     ]);
 @endphp
 
-<footer class="mt-9 bg-lightOrange max-sm:mt-10">
+<footer class="mt-9 bg-[#0f172a] max-sm:mt-10">
     <div class="flex justify-between gap-x-6 gap-y-8 p-[60px] max-1060:flex-col-reverse max-md:gap-5 max-md:p-8 max-sm:px-4 max-sm:py-5">
         <!-- For Desktop View -->
-        <div class="flex flex-wrap items-start gap-24 max-1180:gap-6 max-1060:hidden">
+        <div class="flex flex-wrap items-start gap-24 max-1180:gap-6 max-1060:hidden text-white">
             @if ($customization?->options)
                 @foreach ($customization->options as $footerLinkSection)
                     <ul class="grid gap-5 text-sm">
@@ -86,14 +86,14 @@
         @if (core()->getConfigData('customer.settings.newsletter.subscription'))
             <div class="grid gap-2.5">
                 <p
-                    class="max-w-[288px] text-3xl italic leading-[45px] text-navyBlue max-md:text-2xl max-sm:text-lg"
+                    class="max-w-[288px] text-3xl italic leading-[45px] text-white max-md:text-2xl max-sm:text-lg"
                     role="heading"
                     aria-level="2"
                 >
                     @lang('shop::app.components.layouts.footer.newsletter-text')
                 </p>
 
-                <p class="text-xs">
+                <p class="text-xs text-gray-400">
                     @lang('shop::app.components.layouts.footer.subscribe-stay-touch')
                 </p>
 
@@ -195,3 +195,23 @@
 </footer>
 
 {!! view_render_event('bagisto.shop.layout.footer.after') !!}
+
+<!-- Back to Top Button -->
+<button
+    id="back-to-top"
+    onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    style="display:none;position:fixed;bottom:90px;right:24px;z-index:9998;width:44px;height:44px;border-radius:50%;background:#0f172a;border:2px solid #0072ff;cursor:pointer;align-items:center;justify-content:center;"
+>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00c6ff" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+window.addEventListener('scroll', function() {
+    var btn = document.getElementById('back-to-top');
+    if (window.scrollY > 300) {
+        btn.style.display = 'flex';
+    } else {
+        btn.style.display = 'none';
+    }
+});
+</script>
