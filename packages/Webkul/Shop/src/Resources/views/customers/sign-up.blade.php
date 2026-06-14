@@ -33,9 +33,10 @@
             >
                 <img
                     src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ config('app.name') }}"
                     width="260"
                     height="60"
+                    alt="{{ config('app.name') }}"
+                    style="background:#0f172a;padding:10px 16px;border-radius:10px;"
                 >
             </a>
         </div>
@@ -219,7 +220,7 @@
 			<p class="mt-5 font-medium text-zinc-500 max-sm:text-center max-sm:text-sm">
                 @lang('shop::app.customers.signup-form.account-exists')
 
-                <a class="text-navyBlue"
+                <a class="text-Blue"
                     href="{{ route('shop.customer.session.index') }}"
                 >
                     @lang('shop::app.customers.signup-form.sign-in-button')

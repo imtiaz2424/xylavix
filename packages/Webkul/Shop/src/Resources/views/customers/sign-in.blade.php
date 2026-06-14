@@ -27,9 +27,10 @@
             >
                 <img
                     src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
-                    alt="{{ config('app.name') }}"
                     width="260"
                     height="60"
+                    alt="{{ config('app.name') }}"
+                    style="background:#0f172a;padding:10px 16px;border-radius:10px;"
                 >
             </a>
         </div>
@@ -154,19 +155,20 @@
             {!! view_render_event('bagisto.shop.customers.login.after') !!}
 
             <p class="mt-5 font-medium text-zinc-500 max-sm:text-center max-sm:text-sm">
-                @lang('shop::app.customers.login-form.new-customer')
+                New customer?
 
                 <a
-                    class="text-navyBlue"
+                    class="text-Blue font-bold"
                     href="{{ route('shop.customers.register.index') }}"
                 >
-                    @lang('shop::app.customers.login-form.create-your-account')
+                    Create your account
                 </a>
+            </p>
             </p>
         </div>
 
         <p class="mb-4 mt-8 text-center text-xs text-zinc-500">
-            @lang('shop::app.customers.login-form.footer', ['current_year'=> date('Y') ])
+            © Copyright {{ date('Y') }}, Xylavix. All rights reserved.
         </p>
     </div>
 
