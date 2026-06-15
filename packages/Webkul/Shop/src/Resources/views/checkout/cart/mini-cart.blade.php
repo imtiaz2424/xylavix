@@ -20,29 +20,31 @@
                 <x-slot:toggle>
                     {!! view_render_event('bagisto.shop.checkout.mini-cart.drawer.toggle.before') !!}
 
-                    <span class="relative">
-                        <span
-                            class="icon-cart cursor-pointer text-2xl"
-                            role="button"
-                            aria-label="@lang('shop::app.checkout.cart.mini-cart.shopping-cart')"
-                            tabindex="0"
-                        ></span>
-
-                        @if (core()->getConfigData('sales.checkout.my_cart.summary') == 'display_item_quantity')
-                            <span
-                                class="absolute -top-4 rounded-[44px] bg-navyBlue px-2 py-1.5 text-xs font-semibold leading-[9px] text-white ltr:left-5 rtl:right-5 max-md:ltr:left-4 max-md:rtl:right-4"
-                                v-if="cart?.items_qty"
-                            >
-                                @{{ cart.items_qty }}
-                            </span>
-                        @else
-                            <span
-                                class="absolute -top-4 rounded-[44px] bg-navyBlue px-2 py-1.5 text-xs font-semibold leading-[9px] text-white ltr:left-5 rtl:right-5 max-md:px-2 max-md:py-1.5 max-md:ltr:left-4 max-md:rtl:right-4"
-                                v-if="cart?.items_count"
-                            >
-                                @{{ cart.items_count }}
-                            </span>
-                        @endif
+                    <span class="relative flex items-center gap-2 cursor-pointer">
+                        <!-- Amazon style cart icon -->
+                        <span style="position:relative;display:flex;align-items:center;">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="10" cy="20.5" r="1.5" fill="white"/>
+                                    <circle cx="18.5" cy="20.5" r="1.5" fill="white"/>
+                                </svg>
+                            @if (core()->getConfigData('sales.checkout.my_cart.summary') == 'display_item_quantity')
+                                <span
+                                    style="position:absolute;top:-10px;left:16px;background:#0f172a;color:white;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+                                    v-if="cart?.items_qty"
+                                >
+                                    @{{ cart.items_qty }}
+                                </span>
+                            @else
+                                <span
+                                    style="position:absolute;top:-10px;left:16px;background:#0f172a;color:white;border-radius:50%;width:18px;height:18px;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+                                    v-if="cart?.items_count"
+                                >
+                                    @{{ cart.items_count }}
+                                </span>
+                            @endif
+                        </span>
+                        <span style="color:white;font-size:13px;font-weight:700;line-height:1;margin-left:2px;">Cart</span>
                     </span>
 
                     {!! view_render_event('bagisto.shop.checkout.mini-cart.drawer.toggle.after') !!}

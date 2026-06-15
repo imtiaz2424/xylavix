@@ -76,6 +76,7 @@
                 <div
                     class="fixed inset-0 z-20 bg-gray-500 bg-opacity-50 transition-opacity"
                     v-show="isOpen"
+                    @click="isOpen = false"
                 ></div>
             </transition>
 

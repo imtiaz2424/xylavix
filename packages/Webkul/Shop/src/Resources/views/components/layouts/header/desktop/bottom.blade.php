@@ -20,13 +20,40 @@
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.before') !!}
 
-        <v-desktop-category>
-            <div class="flex items-center gap-5">
-                <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
-                <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
-                <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
-            </div>
-        </v-desktop-category>
+        <!-- All Categories Toggle -->
+<div class="relative" id="all-cat-wrapper">
+    <button
+        onclick="toggleAllCat()"
+        class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-white"
+        style="background:#1e293b;border:1px solid #334155;"
+    >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        All Categories
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" id="all-cat-arrow">
+            <polyline points="6 9 12 15 18 9"/>
+        </svg>
+    </button>
+
+    <!-- Dropdown -->
+    <div id="all-cat-dropdown" style="display:none;position:absolute;top:100%;left:0;z-index:1000;min-width:240px;background:#0f172a;border:1px solid #334155;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.4);padding:8px 0;margin-top:4px;">
+        <v-desktop-category-list>
+            <div style="padding:10px 16px;color:#94a3b8;font-size:13px;">Loading...</div>
+        </v-desktop-category-list>
+    </div>
+</div>
+
+<!-- Regular category links -->
+<v-desktop-category>
+    <div class="flex items-center gap-5">
+        <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
+        <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
+        <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
+    </div>
+</v-desktop-category>
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.category.after') !!}
     </div>
@@ -149,6 +176,21 @@
 </div>
 
 @pushOnce('scripts')
+    <script type="text/x-template" id="v-desktop-category-list-template">
+        <div>
+            <div v-for="category in categories" style="position:relative;">
+                
+                    :href="category.url"
+                    style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;color:#e2e8f0;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s;"
+                    onmouseover="this.style.background='#1e293b';this.style.color='#00c6ff'"
+                    onmouseout="this.style.background='transparent';this.style.color='#e2e8f0'"
+                >
+                    @{{ category.name }}
+                    <svg v-if="category.children.length" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </a>
+            </div>
+        </div>
+    </script>
     <script type="text/x-template" id="v-desktop-category-template">
         <div class="flex items-center gap-5" v-if="isLoading">
             <span class="shimmer h-6 w-20 rounded" role="presentation"></span>
@@ -220,6 +262,41 @@
                 }
             },
         });
+
+                    app.component('v-desktop-category-list', {
+                template: '#v-desktop-category-list-template',
+                data() {
+                    return { categories: [] }
+                },
+                mounted() {
+                    this.$axios.get("{{ route('shop.api.categories.tree') }}")
+                        .then(response => {
+                            this.categories = response.data.data;
+                        });
+                },
+            });
+
+            function toggleAllCat() {
+                const dd = document.getElementById('all-cat-dropdown');
+                const arrow = document.getElementById('all-cat-arrow');
+                if (dd.style.display === 'none') {
+                    dd.style.display = 'block';
+                    arrow.style.transform = 'rotate(180deg)';
+                } else {
+                    dd.style.display = 'none';
+                    arrow.style.transform = 'rotate(0deg)';
+                }
+            }
+
+            document.addEventListener('click', function(e) {
+                const wrapper = document.getElementById('all-cat-wrapper');
+                if (wrapper && !wrapper.contains(e.target)) {
+                    const dd = document.getElementById('all-cat-dropdown');
+                    const arrow = document.getElementById('all-cat-arrow');
+                    if (dd) dd.style.display = 'none';
+                    if (arrow) arrow.style.transform = 'rotate(0deg)';
+                }
+            });
     </script>
 @endPushOnce
 
